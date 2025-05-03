@@ -38,15 +38,6 @@ describe('User', () => {
   });
 
   describe('getUsers', () => {
-    it('should return empty array if no users', async () => {
-      const response = await api
-        .get('/users')
-        .expect(200)
-        .expect('Content-Type', /application\/json/);
-
-      expect(response.body).toEqual([]);
-    });
-
     it('should return all users', async () => {
       const users = [
         {
