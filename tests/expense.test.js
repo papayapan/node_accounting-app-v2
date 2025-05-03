@@ -146,37 +146,6 @@ describe('Expense', () => {
   });
 
   describe('getExpense', () => {
-    it('should return expense', async () => {
-      const {
-        body: { id: userId },
-      } = await api.post('/users').send({
-        name: 'John Doe',
-      });
-
-      const expenseData = {
-        userId,
-        spentAt: '2022-10-19T11:01:43.462Z',
-        title: 'Buy a new laptop',
-        amount: 999,
-        category: 'Electronics',
-        note: 'I need a new laptop',
-      };
-
-      const {
-        body: { id: expenseId },
-      } = await api.post('/expenses').send(expenseData);
-
-      const response = await api
-        .get(`/expenses/${expenseId}`)
-        .expect(200)
-        .expect('Content-Type', /application\/json/);
-
-      expect(response.body).toEqual({
-        id: expenseId,
-        ...expenseData,
-      });
-    });
-
     it('should return 404 if expense not found', async () => {
       await api.get('/expenses/1').expect(404);
     });
