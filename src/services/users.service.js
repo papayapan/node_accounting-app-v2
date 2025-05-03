@@ -19,9 +19,10 @@ const getUsers = () => {
   return users;
 };
 
+let newUserId = 0;
 const createUser = (name) => {
   const newUser = {
-    id: Date.now() + Math.floor(Math.random() * 1000),
+    id: newUserId++,
     name,
   };
 

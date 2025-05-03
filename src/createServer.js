@@ -5,14 +5,14 @@ const userRouter = require('./routes/users.route');
 const expensesRouter = require('./routes/expenses.route');
 
 function createServer() {
-  // Use express to create a server
-  // Add a routes to the server
-  // Return the server (express app)
-
   const server = express();
 
-  server.use('/users', express.json(), userRouter.router);
-  server.use('/expenses', express.json(), expensesRouter.router);
+  // Глобальный middleware для парсинга JSON
+  server.use(express.json());
+
+  // Роуты
+  server.use('/users', userRouter.router);
+  server.use('/expenses', expensesRouter.router);
 
   return server;
 }

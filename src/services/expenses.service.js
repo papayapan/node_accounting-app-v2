@@ -110,8 +110,13 @@ const getExpenses = (userId, categories, from, to) => {
   }
 
   if (categories) {
+    // Преобразуем строку в массив, если это не массив
+    const categoryList = Array.isArray(categories)
+      ? categories
+      : categories.split(',').map((cat) => cat.trim());
+
     filteredExpenses = filteredExpenses.filter((expense) =>
-      categories.includes(expense.category),
+      categoryList.includes(expense.category),
     );
   }
 
